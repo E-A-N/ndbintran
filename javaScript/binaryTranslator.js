@@ -8,16 +8,20 @@ let decimalToBinary = (num, binaryHeader= false) => {
  * @return {array} - A list of binary values
  */
 let stringToBinary = (message) => {
-    let binList = [];
+    let binaryCollection = [];
     for (let i = 0; i < message.length; i++){
         let asciiValue = message.charCodeAt(i);
         let binaries = decimalToBinary(asciiValue)
-        binList.push(binaries)
+        binaryCollection.push(binaries)
     }
 
-    return binList;
+    return binaryCollection;
 }
 
+/** 
+ * @param {array} binaries - A collection binary numbers in string format
+ * @returns {array} - Number collection with ascii values
+*/
 let parseBinary = (binaries) => {
     let decimals = binaries.map((num) => {
         let hasHeader = num.slice(0, 2) === "0b";
@@ -28,6 +32,11 @@ let parseBinary = (binaries) => {
     return decimals;
 };
 
+/**
+ * 
+ * @param {array} numberList - A collection of ascii values
+ * @returns {string} - the message hidden in numberlist values
+ */
 let toMessage = (numberList) => {
     let message;
     if (Array.isArray(numberList)){
@@ -39,6 +48,12 @@ let toMessage = (numberList) => {
     return message.join("");
 }
 
+/**
+ * 
+ * @param {array} code - 2 length array of binary representing characters 
+ * @param {string} message - a message to encode within a binaristic code
+ * @returns {string} - a binary encoded message
+ */
 let toSecret = (code, message) => {
     let binaryArray = stringToBinary(message);
     let secretArray = binaryArray.map((message) => {
@@ -141,9 +156,9 @@ let fromSecret = (code, secret) => {
     return asciiArray;
 }
 
-let keyCode = ["xx1", "xxx"]
+let keyCode = ["1p", "11"]
 
-let mainString = "herro robo!";
+let mainString = "I hope your day insn't too stressful! <3";
 let binaryArray = stringToBinary(mainString);
 let decimals = parseBinary(binaryArray);
 let message = toMessage(decimals);
