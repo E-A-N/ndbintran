@@ -103,7 +103,6 @@ let fromSecret = (code, secret) => {
             else {//no more characters left, assign blank character
                 differenceSignature.zeroChar = "";
                 differenceSignature.oneChar = binaryOne[charIter];
-                alert("Too short Zero Char is the case!!")
                 break;     
             }
             if(charIter < binaryOne.length){
@@ -112,13 +111,11 @@ let fromSecret = (code, secret) => {
             else{
                 differenceSignature.zeroChar = binaryZero[charIter];
                 differenceSignature.oneChar = "";
-                alert("Too short One Char is the case!!")
                 break;
             }
             
             //assign in case that characters are observerd as different
             if (zeroChar !== oneChar){
-                alert("True difference is the case!!")
                 differenceSignature.zeroChar = zeroChar;
                 differenceSignature.oneChar  = oneChar;
                 break;
@@ -156,9 +153,9 @@ let fromSecret = (code, secret) => {
     return asciiArray;
 }
 
-let keyCode = ["1p", "11"]
+let keyCode = ["x", "dx"]
 
-let mainString = "I hope your day insn't too stressful! <3";
+let mainString = "Ean";
 let binaryArray = stringToBinary(mainString);
 let decimals = parseBinary(binaryArray);
 let message = toMessage(decimals);
